@@ -274,6 +274,29 @@ try {
 
 }
 
+
+
+//to get member roll
+
+function promptMemberRole() {
+
+            return inquirer
+                .prompt({
+                    type: "list",
+                    message: "Which occupation are you adding?"
+                    name: "role",
+                    choices: [
+                            "Engineer",
+                            "Intern",
+                            "End of option"
+
+                    ]
+                })
+
+
+
+}
+
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
