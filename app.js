@@ -122,6 +122,158 @@ function promptManager() {
         ])
 }
 
+
+
+// this is for the team member
+
+
+const teamMembers = [];
+
+async function promptTeamMembers() {
+
+
+try {
+    const { role } = await promptMemberRole();
+    if (role === "Engineer") {
+
+                return inquirer
+                    .prompt([
+
+                        {
+                            type: "input",
+                            message: "Enter engineer name:",
+                            name: "name"
+                        },
+                        {
+                            type: "number",
+                            message: "Enter engineer ID number:",
+                            name: "id"
+                        },
+                        {
+                            type: "input",
+                            message: "Enter engineer email:",
+                            name: "email"
+                        },
+                        {
+                            type: "input",
+                            message: "Enter the github username:",
+                            name: "github"
+                        },
+                        {
+                            type: "input",
+                            message: "Upload an image:",
+                            name: "imageUrl"
+                        }
+
+
+
+
+
+
+
+                    ]).then(function ({ name, id, email, imageUrl, github }) {
+
+
+                            teamMembers.push(new Engineer(name, id, email, imageUrl, github));
+                            return promptTeamMembers();
+
+                    })
+
+
+
+
+
+
+
+
+
+
+
+    } else if (role === "Intern") {
+
+
+        return inquirer 
+            .prompt([
+
+
+                {
+                    type: "input",
+                    message: "Enter intern name:",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Enter intern ID:",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Enter intern email:",
+                    name: "email"
+                },
+                {
+                    type: "input",
+                    message: "Enter intern school:",
+                    name: "school"
+                },
+                {
+                    type: "input",
+                    message: "upload an image:",
+                    name: "imageUrl"
+                }
+
+
+
+
+
+
+
+
+
+            ]).then(function ({ name, id, email, imageUrl, school }) {
+
+                        teamMembers.push(new Intern(name, id, email, imageUrl, school));
+                        return promptTeamMembers();
+
+
+            })
+
+
+
+
+
+
+
+    } else {
+        return teamMembers;
+    }
+} catch (err)
+ {
+     console.log(err);
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
