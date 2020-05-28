@@ -9,7 +9,119 @@ const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
+
+
+init();
+
+async function init() {
+
+
+        try {
+                //this create a new array for employees
+                const employees = [];
+
+                        //begins prompt for manager
+                const { name, id, email, imageUrl, officeNumber } = await promptManager();
+                        //places manager into array
+                employees.push(new Manager*(name, id, email, imageUrl, officeNumber));
+
+                //prmot team members
+
+                const response = await promptTeamMembers();
+                employees.push(...response);
+
+
+
+                //this is for the render function 
+
+                const team = await render(employees);
+                
+
+                console.log(team);
+
+                //create html file
+
+
+                fs.writeFile(outputPath, team, function(err) {
+
+                        if (err) {
+
+                                console.log(err);
+
+                        }
+
+                            console.log("html file made")
+
+                });
+
+
+        } catch (err) {
+            console.log(err);
+        }
+
+
+
+
+
+
+
+
+
+
+
+}
 ​
+//this is to get information from the user about the managers 
+
+
+function promptManager() {
+    return inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter manager's name:",
+                name: "name"
+            },
+            {
+                type: "number",
+                message: "Enter manager's ID bumber :",
+                name: "id"
+            },
+            {
+                type: "input",
+                message: "Enter manager's email:",
+                name: "email"
+            },
+            {
+                type: "number",
+                message: "Enter manager's office:",
+                name: "officeNumber"
+            },
+            {
+                type: "input",
+                message: "Upload an image:",
+                name: "imageUrl"
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ])
+}
+
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
